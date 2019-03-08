@@ -1,0 +1,16 @@
+{% extends 'generals/main.html' %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+		<h1>Membership payment</h1>
+		<div class="col-sm-4 col-md-4">
+			<p>Slected membership: {{ selected_membership }}</p>
+			<p>Price:<strong>NGN {{ selected_membership.price }}/<small>month</small></p>
+			<!-- So, the payment form here -->
+			
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

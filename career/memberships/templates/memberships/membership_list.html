@@ -1,0 +1,37 @@
+{% extends 'generals/main.html' %}
+
+{% block content %}
+	<div class="container">
+		<h1>Select a membership</h1>
+		<div class="row">
+			{% for object in object_list %}
+				<div class="col-sm-4 col-sm-4">
+					<h2>{{ object.membership_type }}</h2>
+					<p>price:NGN{{ object.price }} <small>/month</small></p>
+					<h4>Courses includes</h4>
+					<ul>
+						{% for course in object.course_set.all %}
+							<li style="list-style-type: square;">{{ course.title }}</li>
+						{% endfor %}
+					</ul>
+					{% if object.membership_type != 'Free' %}
+						<!-- Payment form|Vogpay form -->
+						<!--<form method='POST' id='payform' action='//voguepay.com/pay/' onsubmit='return false;'>-->
+							<form method="POST" action="{% url 'memberships:select' %}">{% csrf_token %}
+						  
+    <input type='hidden' name='membership_type' value="{{ object.membership_type }}"/>
+
+						    <!-- End of Vogupay -->
+						    {% if object.membership_type != current_membership %}
+
+						    <input type='image' src='//voguepay.com/images/buttons/buynow_blue.png' alt='Select' />
+						    {% else %}
+						    <p><small>This is your membership.</small></p>
+						    {% endif %}
+						</form>
+					{% endif %}
+					</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock content %}

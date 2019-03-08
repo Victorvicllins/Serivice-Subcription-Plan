@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'generals/main.html' %}
+{% block content %}
+
+	<h2>Course list</h2>
+	{% for object in object_list %}
+		<a href="{{ object.get_absolute_url}}">{{ object }}</a>
+
+	{% endfor %}
+	
+{% endblock %}

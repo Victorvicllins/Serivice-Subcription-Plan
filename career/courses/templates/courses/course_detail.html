@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'generals/main.html' %}
+{% block content %}
+
+	<p>{{ object.title }} </p>
+	{% for lesson in object.lessons %}
+		<a href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a>
+	{% endfor %}
+
+{% endblock %}

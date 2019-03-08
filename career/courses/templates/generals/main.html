@@ -1,0 +1,71 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}">
+
+    <title>Spacer</title>
+  </head>
+  <body>
+  	{% include 'generals/messages.html' %}
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	 
+	  <a class="navbar-brand" href="#">
+	    <img src="/docs/4.2/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">Spacer
+	  </a>
+
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">We Are</a>
+	      </li>
+	      {% block post_detail_link %}
+	      {% endblock %}
+
+	      {% if request.user.is_authenticated %}
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          User
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="#">Profile</a>
+	          <a class="dropdown-item" href="{% url 'memberships:select' %}">Membership</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="#">Logout</a>
+	        </div>
+	      </li>
+	      {% else %}
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Register</a>
+	      </li>
+	       <li class="nav-item">
+	        <a class="nav-link" href="#">Login</a>
+	      </li>
+	      {% endif %}
+	    </ul>
+	  </div>
+	</nav>
+
+   	{% block content %}
+   	{% endblock content %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
+  </body>
+</html>
+
